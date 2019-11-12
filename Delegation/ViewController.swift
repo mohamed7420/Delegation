@@ -8,13 +8,37 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController{
+    
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
     }
 
 
+    @IBAction func btn_goto(_ sender: UIButton) {
+        
+        let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "SecondViewController") as! SecondViewController
+        VC.myDelegation = self
+        
+        present(VC, animated: true, completion: nil)
+        
+    }
+}
+
+extension ViewController : DelegationData{
+    
+    func sendData(profileImage: UIImage, textMessage: String) {
+        
+        self.profileImage.image = profileImage
+        self.textLabel.text = textMessage
+    }
+    
+    
+    
+    
 }
 
